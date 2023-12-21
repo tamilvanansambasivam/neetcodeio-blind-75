@@ -1,40 +1,27 @@
-/**
- * Function to group anagrams in an array of words.
- * @param {string[]} words - Array of words.
- * @param {Map} map - Map to store grouped anagrams.
- * @returns {string[][]} - Array of grouped anagrams.
- */
 var groupAnagrams = (words, map = new Map()) => {
     if (!words.length) return [];
 
-    // Group words into the map
-    groupWords(words, map);
-
-    // Return values of the map as an array
-    return [...map.values()];
+    groupWords(words, map);    /* Time O(N * (K * log(K)) | Space O(N * K) */
+    console.log(...map.values())
+    return [ ...map.values() ];/* Time O(N)               | Space O(N * K) */
 };
-
 
 var groupWords = (words, map) => {
-    for (const original of words) {
-        // Get the sorted version of the word
-        const sorted = reorder(original);
-
-        // Get the existing values for the sorted word or an empty array
+    for (const original of words) {/* Time O(N) */
+        const sorted = reorder(original);/* Time O(K * log(K)) | Space O(K) */
         const values = map.get(sorted) || [];
 
-        // Add the original word to the values array
-        values.push(original);
-
-        // Update the map with the sorted word and its values
-        map.set(sorted, values);
+        values.push(original);           /*                    | Space O(N) */
+        map.set(sorted, values);         /*                    | Space O(N * K) */
     }
-};
-
+}
 
 const reorder = (str) => str
-    .split('')                         // Split the string into an array of characters
-    .sort((a, b) => a.localeCompare(b)) // Sort the characters
-    .join('');                         // Join the characters back into a string
+    .split('')                         /* Time O(K)          | Space O(K) */
+    .sort((a, b) => a.localeCompare(b))/* Time O(K * log(K)) | Space O(1 || log(K)) */
+    .join('');                         /* Time O(K)          | Space O(K) */
+
+
+
 
 
