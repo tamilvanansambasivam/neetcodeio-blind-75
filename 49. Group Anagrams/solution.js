@@ -2,7 +2,7 @@ var groupAnagrams = (words, map = new Map()) => {
     if (!words.length) return [];
 
     groupWords(words, map);    /* Time O(N * (K * log(K)) | Space O(N * K) */
-    console.log(...map.values())
+   
     return [ ...map.values() ];/* Time O(N)               | Space O(N * K) */
 };
 
