@@ -1,15 +1,13 @@
 /**
  * @param {number[]} nums
- * @param {number} target
- * @return {number[]}
+ * @return {boolean}
  */
-var twoSum = function (nums, target) {
-    for (let i = 0; i < nums.length; i++) {
+var containsDuplicate = (nums, numsSet = new Set()) => {
+    for (const num of nums) {/* Time O(N) */
+        if (numsSet.has(num)) return true;
 
-        for (let j = i + 1; j < nums.length; j++) {
-            if (nums[i] == target - nums[j]) {
-                return [i, j]
-            }
-        }
+        numsSet.add(num);       /* Space O(N) */
     }
+
+    return false;
 };
