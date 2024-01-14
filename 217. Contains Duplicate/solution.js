@@ -2,12 +2,9 @@
  * @param {number[]} nums
  * @return {boolean}
  */
-var containsDuplicate = (nums, numsSet = new Set()) => {
-    for (const num of nums) {/* Time O(N) */
-        if (numsSet.has(num)) return true;
+var containsDuplicate = (nums) => {
+    const numsSet = new Set(nums);/* Time O(N) | Space O(N) */
+    const isEqual = numsSet.size === nums.length;
 
-        numsSet.add(num);       /* Space O(N) */
-    }
-
-    return false;
+    return !isEqual;
 };
