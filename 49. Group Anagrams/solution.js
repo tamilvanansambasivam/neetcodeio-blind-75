@@ -1,8 +1,16 @@
+/**
+ * Sort - HeapSort Space O(1) | QuickSort Space O(log(K))
+ * Hash Map - Adjacency List
+ * Time O(N * (K * log(K))) | Space O(N * K)
+ * https://leetcode.com/problems/group-anagrams/
+ * @param {string[]} strs
+ * @return {string[][]}
+ */
 var groupAnagrams = (words, map = new Map()) => {
     if (!words.length) return [];
 
     groupWords(words, map);    /* Time O(N * (K * log(K)) | Space O(N * K) */
-   
+
     return [ ...map.values() ];/* Time O(N)               | Space O(N * K) */
 };
 
@@ -20,8 +28,6 @@ const reorder = (str) => str
     .split('')                         /* Time O(K)          | Space O(K) */
     .sort((a, b) => a.localeCompare(b))/* Time O(K * log(K)) | Space O(1 || log(K)) */
     .join('');                         /* Time O(K)          | Space O(K) */
-
-
 
 
 
