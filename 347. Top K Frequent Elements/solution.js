@@ -1,19 +1,24 @@
-var topKFrequent = function (nums, k) {
-  let frequency = {};
-  for (let i = 0; i < nums.length; i++) {
-    if (frequency.hasOwnProperty(nums[i])) frequency[nums[i]] += 1;
-    else frequency[nums[i]] = 1;
-  }
-  let result = Object.keys(frequency).map((key) => [
-    Number(key),
-    frequency[key],
-  ]);
-  let sortedResult = result.sort((a, b) => {
-    return b[1] - a[1];
-  });
-  let output = [];
-  for (let i = 0; i < k; i++) {
-    output.push(sortedResult[i][0]);
-  }
-  return output;
-};
+function topKFrequent(nums, k) {
+    const freqMap = {};
+    for (const num of nums) {
+        freqMap[num] = (freqMap[num] || 0) + 1;
+    }
+
+    const buckets = [];
+    for (const num in freqMap) {
+        const freq = freqMap[num];
+        if (!buckets[freq]) {
+            buckets[freq] = [];
+        }
+        buckets[freq].push(parseInt(num));
+    }
+
+    const result = [];
+    for (let i = buckets.length - 1; i >= 0 && result.length < k; i--) {
+        if (buckets[i]) {
+            result.push(...buckets[i]);
+        }
+    }
+
+    return result;
+}
