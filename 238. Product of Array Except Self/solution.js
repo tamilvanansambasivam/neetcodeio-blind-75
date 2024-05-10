@@ -6,7 +6,6 @@
  * @return {number[]}
  */
 
-
 function productExceptSelf(nums) {
   const result = [];
   let prefix = 1;
