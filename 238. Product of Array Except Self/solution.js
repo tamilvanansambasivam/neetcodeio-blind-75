@@ -1,3 +1,12 @@
+/**
+ * Array
+ * Time O(N) | Space O(N)
+ * https://leetcode.com/problems/product-of-array-except-self/
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+
+
 function productExceptSelf(nums) {
   const result = [];
   let prefix = 1;
