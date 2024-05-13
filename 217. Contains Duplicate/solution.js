@@ -1,14 +1,13 @@
+/**
+ * Hash Set
+ * Time O(N) | Space O(N)
+ * https://leetcode.com/problems/contains-duplicate/
+ * @param {number[]} nums
+ * @return {boolean}
+ */
 var containsDuplicate = (nums) => {
-    nums.sort((a, b) => a - b);/* Time O(N * log(N)) | Space O(1 || log(N)) */
+    const numsSet = new Set(nums);/* Time O(N) | Space O(N) */
+    const isEqual = numsSet.size === nums.length;
 
-    return hasDuplicate(nums);
-}
-
-const hasDuplicate = (nums) => {
-    for (let curr = 0; curr < (nums.length - 1); curr++) {/* Time O(N) */
-        const next = (curr + 1);
-        if (nums[curr] === nums[next]) return true;
-    }
-
-    return false;
-}
+    return !isEqual;
+};
