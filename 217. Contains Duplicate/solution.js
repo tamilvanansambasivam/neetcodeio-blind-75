@@ -1,13 +1,16 @@
 /**
- * Hash Set
+ * Hash Set - Early Exit
  * Time O(N) | Space O(N)
  * https://leetcode.com/problems/contains-duplicate/
  * @param {number[]} nums
  * @return {boolean}
  */
-var containsDuplicate = (nums) => {
-    const numsSet = new Set(nums);/* Time O(N) | Space O(N) */
-    const isEqual = numsSet.size === nums.length;
+var containsDuplicate = (nums, numsSet = new Set()) => {
+    for (const num of nums) {/* Time O(N) */
+        if (numsSet.has(num)) return true;
 
-    return !isEqual;
+        numsSet.add(num);       /* Space O(N) */
+    }
+
+    return false;
 };
