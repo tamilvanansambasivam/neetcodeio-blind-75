@@ -18,7 +18,6 @@ var containsDuplicate = (nums) => {
   return false;
 };
 
-
 /**
  * Sort - HeapSort Space O(1) | QuickSort Space O(log(N))
  * Time O(N * log(N)) | Space O(1)
@@ -43,8 +42,6 @@ const hasDuplicate = (nums) => {
 
   return false;
 };
-
-
 
 /**
  * Hash Set
