@@ -1,29 +1,24 @@
 /**
- * 2 Pointer | Midde Convergence | No RegEx | No Copying
- * Time O(N) | Space O(1)
+ * Array - Filter && Clone && Reverse
+ * Time O(N) | Space O(N)
  * https://leetcode.com/problems/valid-palindrome/
  * @param {string} s
  * @return {boolean}
  */
 var isPalindrome = function (s) {
-    const isAlphaNumeric = c => (c.toLowerCase() >= 'a' && c.toLowerCase() <= 'z') || c >= '0' && c <= '9'
+    if (!s.length) return true;
 
-    let left = 0;
-    let right = s.length - 1;
-    let skipLeft, skipRight, endsEqual = false;
+    const alphaNumeric = filterAlphaNumeric(s);/* Time O(N) | Space O(N) */
+    const reversed = reverse(alphaNumeric);    /* Time O(N) | Space O(N) */
 
-    while (left < right) {
-        skipLeft = !isAlphaNumeric(s.charAt(left))
-        if (skipLeft) { left++; continue; }
-
-        skipRight = !isAlphaNumeric(s.charAt(right))
-        if (skipRight) { right--; continue; }
-
-        endsEqual = s.charAt(left).toLowerCase() === s.charAt(right).toLowerCase()
-        if (!endsEqual) return false
-
-        left++
-        right--
-    }
-    return true
+    return alphaNumeric === reversed;
 };
+
+const filterAlphaNumeric = (s, nonAlphaNumeric = new RegExp('[^a-z0-9]', 'gi')) => s
+    .toLowerCase()               /* Time O(N) | Space O(N) */
+    .replace(nonAlphaNumeric, '')/* Time O(N) | Space O(N) */
+
+const reverse = (s) => s
+    .split('')/* Time O(N) | Space O(N) */
+    .reverse()/* Time O(N) | Space O(N) */
+    .join('');/* Time O(N) | Space O(N) */
