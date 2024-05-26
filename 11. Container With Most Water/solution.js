@@ -2,27 +2,14 @@
  * @param {number[]} height
  * @return {number}
  */
-var maxArea = function (height) {
-  let [left, right, max] = [0, height.length - 1, 0];
+var maxArea = function(height) {
+    let maxArea = 0
+    let left = 0
+    let right = height.length-1
 
-  while (left < right) {
-    let containerHeight, area;
-    let containerWidth = right - left;
-
-    if (height[left] < height[right]) {
-      containerHeight = height[left];
-      left++;
-    } else {
-      containerHeight = height[right];
-      right--;
+    while (left <right){
+        maxArea = Math.max(maxArea, Math.min(height[left], height[right])*(right-left))
+        height[left]<=height[right]?left++:right--
     }
-
-    area = containerWidth * containerHeight;
-
-    if (area > max) {
-      max = area;
-    }
-  }
-
-  return max;
-};
+    return maxArea
+}
