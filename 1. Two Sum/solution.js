@@ -3,16 +3,23 @@
  * @param {number} target
  * @return {number[]}
  */
-var twoSum = function(nums, target) {
-    const map = {};
+var twoSum = function (nums, target) {
+    // Object to store the numbers and their indices
+    const numMap = {};
 
+    // Iterate over the array
     for (let i = 0; i < nums.length; i++) {
-        let difference = target - nums[i];
+        // Calculate the complement
+        const complement = target - nums[i];
 
-        if (difference in map) {
-            return [i, map[difference]];
-        } else {
-            map[nums[i]] = i;
+        // Check if the complement is in the object
+        if (complement in numMap) {
+            // If found, return the indices
+            return [numMap[complement], i];
         }
+
+        // If not found, store the number with its index
+        numMap[nums[i]] = i;
     }
+
 };
