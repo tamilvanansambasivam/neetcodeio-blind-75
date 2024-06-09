@@ -4,28 +4,27 @@
  * @return {boolean}
  */
 var isAnagram = function (s, t) {
-  if (s.length !== t.length) {
-    return false;
-  }
-  let freq1 = {};
-  let freq2 = {};
-
-  for (let i = 0; i < s.length; i++) {
-    freq1[s[i]] = (freq1[s[i]] || 0) + 1;
-  }
-
-  for (let i = 0; i < t.length; i++) {
-    freq2[t[i]] = (freq2[t[i]] || 0) + 1;
-  }
-
-  if (Object.keys(freq1).length == Object.keys(freq2).length) {
-    for (const property in freq2) {
-      if (freq1[property] != freq2[property]) {
+    if (s.length != t.length) {
         return false;
-      }
+    }
+
+    let map = {}
+
+    for (let i = 0; i < s.length; i++) {
+        if (!(map[s[i]])) {
+            map[s[i]] = 1
+        } else {
+            map[s[i]] = map[s[i]] + 1
+        }
+    }
+
+    for (let i = 0; i < t.length; i++) {
+        if (!(map[t[i]])) {
+            return false
+        } else {
+            map[t[i]] = map[t[i]] - 1
+        }
     }
     return true;
-  } else {
-    return false;
-  }
+
 };
