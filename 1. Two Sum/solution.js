@@ -3,23 +3,31 @@
  * @param {number} target
  * @return {number[]}
  */
-var twoSum = function (nums, target) {
-    // Object to store the numbers and their indices
-    const numMap = {};
 
-    // Iterate over the array
-    for (let i = 0; i < nums.length; i++) {
-        // Calculate the complement
-        const complement = target - nums[i];
+function findTwoSum(numbers, targetSum) {
+    const numIndices = {};
 
-        // Check if the complement is in the object
-        if (complement in numMap) {
-            // If found, return the indices
-            return [numMap[complement], i];
+    for (let i = 0; i < numbers.length; i++) {
+        const requiredValue = targetSum - numbers[i];
+
+        if (requiredValue in numIndices) {
+            return [numIndices[requiredValue], i];
         }
 
-        // If not found, store the number with its index
-        numMap[nums[i]] = i;
+        numIndices[numbers[i]] = i;
     }
 
-};
+    // If no solution is found, return null
+    return null;
+}
+
+// Example usage
+const numbers = [2, 7, 11, 15];
+const targetSum = 9;
+console.log(findTwoSum(numbers, targetSum));
+// Output: [0, 1]
+
+const numbersNoSolution = [1, 2, 3];
+const targetSumNoSolution = 10;
+console.log(findTwoSum(numbersNoSolution, targetSumNoSolution));
+// Output: null
